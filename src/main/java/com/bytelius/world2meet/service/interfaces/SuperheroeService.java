@@ -12,4 +12,6 @@ public interface SuperheroeService {
 	GenericResponse getSuperheroesByNameValue(String param);
 
 	GenericResponse updateSuperhero(SuperheroeDAO data);
+
+	GenericResponse deleteSuperhero(Integer id);
 }

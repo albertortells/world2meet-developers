@@ -105,4 +105,23 @@ public class SuperheroeServiceImpl implements SuperheroeService {
 
 		return response;
 	}
+
+	@Override
+	public GenericResponse deleteSuperhero(Integer id) {
+		GenericResponse response;
+
+		SuperheroeEntity entity = repository.findSuperheroeEntityById(id);
+
+		if(entity == null) {
+			return new GenericResponse(Status.NOT_FOUND.getStatusCode(), Status.NOT_FOUND.getReasonPhrase() + " - Incorrect id. Superhero not found.");
+		}
+
+		repository.deleteById(id);
+
+		int status = Status.OK.getStatusCode();
+		String message = Status.OK.getReasonPhrase() + " - Superhero deleted.";
+		response = new GenericResponse(status, message, true);
+
+		return response;
+	}
 }
