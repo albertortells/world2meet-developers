@@ -3,6 +3,7 @@ package com.bytelius.world2meet.service;
 import com.bytelius.world2meet.common.GenericResponse;
 import com.bytelius.world2meet.data.entity.SuperheroeEntity;
 import com.bytelius.world2meet.data.mapper.SuperheroeMapper;
+import com.bytelius.world2meet.data.model.input.SuperheroeDAO;
 import com.bytelius.world2meet.data.model.output.SuperheroeDTO;
 import com.bytelius.world2meet.repository.SuperheroesRepository;
 import com.bytelius.world2meet.service.interfaces.SuperheroeService;
@@ -43,7 +44,7 @@ public class SuperheroeServiceImpl implements SuperheroeService {
 	}
 
 	@Override
-	public GenericResponse getSuperheroeByID(Integer id) {
+	public GenericResponse getSuperheroByID(Integer id) {
 		GenericResponse response;
 
 		SuperheroeEntity entity = repository.findSuperheroeEntityById(id);
@@ -77,6 +78,30 @@ public class SuperheroeServiceImpl implements SuperheroeService {
 		String message = Status.OK.getReasonPhrase() + " - Superheroes found it.";
 
 		response = new GenericResponse(status, message, results);
+
+		return response;
+	}
+
+	@Override
+	public GenericResponse updateSuperhero(SuperheroeDAO data) {
+		GenericResponse response;
+
+		SuperheroeEntity entity = repository.findSuperheroeEntityById(data.getId());
+
+		//Check if data is correct
+		if (entity == null) {
+			return new GenericResponse(Status.NOT_FOUND.getStatusCode(), Status.NOT_FOUND.getReasonPhrase() + " - Incorrect id. Superhero not found.");
+		}
+		entity.setName(data.getName());
+		entity.setPower(data.getPower());
+
+		repository.saveAndFlush(entity);
+
+		SuperheroeDTO result = mapper.superheroeEntityToSuperheroDTO(entity);
+
+		int status = Status.CREATED.getStatusCode();
+		String message = Status.CREATED.getReasonPhrase() + " - Example user updated.";
+		response = new GenericResponse(status, message, result);
 
 		return response;
 	}
