@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.ws.rs.core.Response.Status;
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
 public class SuperheroeServiceImpl implements SuperheroeService {
@@ -29,7 +28,7 @@ public class SuperheroeServiceImpl implements SuperheroeService {
 
 		ArrayList<SuperheroeEntity> entities = repository.findAll();
 
-		if(entities == null) {
+		if(entities == null || entities.size() == 0) {
 			return new GenericResponse(Status.NOT_FOUND.getStatusCode(), Status.NOT_FOUND.getReasonPhrase() + " - There is no superheros in database");
 		}
 
@@ -68,7 +67,7 @@ public class SuperheroeServiceImpl implements SuperheroeService {
 
 		ArrayList<SuperheroeEntity> entities = repository.findSuperheroeEntitiesByNameContainingIgnoreCase(param);
 
-		if(entities == null) {
+		if(entities == null || entities.size() == 0) {
 			return new GenericResponse(Status.NOT_FOUND.getStatusCode(), Status.NOT_FOUND.getReasonPhrase() + " - There is no superheros with this parameters.");
 		}
 
