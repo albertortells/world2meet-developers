@@ -42,9 +42,7 @@ Este mantenimiento debe permitir:
 
 ## Cómo se resolvió
 
-El relato de cómo se abordó la prueba, las decisiones tomadas y los puntos opcionales cubiertos está en [`storytelling.html`](./storytelling.html).
-
-Las mejoras pendientes para dejar esta prueba técnica "perfecta" están documentadas en [`mejoras.html`](./mejoras.html) (versión en markdown: [`MEJORAS.md`](./MEJORAS.md)).
+El relato de cómo se abordó la prueba, las decisiones tomadas y los puntos opcionales cubiertos, junto con las mejoras pendientes para dejarla "perfecta", están publicados en [tech-test.albertortells.cat/world2meet](https://tech-test.albertortells.cat/world2meet/) (versión en markdown de las mejoras: [`MEJORAS.md`](./MEJORAS.md)).
 
 ## Stack técnico
 
